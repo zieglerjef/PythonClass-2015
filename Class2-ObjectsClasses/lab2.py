@@ -19,3 +19,8 @@ class Clock(object):
 	def __sub__(self, added_minutes): #minus minutes from myclock
 		return self + (-1)*added_minutes #add "subtracted" minutes
 		
+	def __eq__(self, other): #check whether two clocks are equal or not
+		return self.hour == other.hour and other.minutes == self.minutes
+		
+	def __ne__(self, other):
+		return not self==other
