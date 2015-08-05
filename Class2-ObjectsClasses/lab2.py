@@ -10,14 +10,12 @@ class Clock(object):
 	def __str__(self): #add zero in front of single digit hour/minutes
 		return '0'*(2-len(str(self.hour)))+str(self.hour)+":"+'0'*(2-len(str(self.minutes)))+str(self.minutes)
 		
-	def __add__(self, added_minutes):
-		sum_minutes=self.minutes+added_minutes
-		updated_minute=sum_minutes-(60*(sum_minutes/60))
-		updated_hour=(self.hour+sum_minutes/60)%24
-		return Clock(updated_hour,updated_minute)
+	def __add__(self, added_minutes): #add minutes to myclock
+		sum_minutes=self.minutes+added_minutes #sum minutes from myclock and added minutes
+		updated_minute=sum_minutes%60 #remainder of sum minutes/60
+		updated_hour=(self.hour+sum_minutes/60)%24 #add remainder of hours once clock goes past 24
+		return Clock(updated_hour,updated_minute) #return updated clock
 		
-	def __sub__(self, minus_minutes):
-		return self + (-1)*minus_minutes
-		
-	def __eq__(self, other):
+	def __sub__(self, added_minutes): #minus minutes from myclock
+		return self + (-1)*added_minutes #add "subtracted" minutes
 		
