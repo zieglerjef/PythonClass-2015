@@ -5,7 +5,7 @@ class ordinalTest(unittest.TestCase):
 	
 	def test_one(self): #run test to distinguish between 1st and 11th
 		self.assertEqual('11th',lab3.ordinal(11))
-		self.assertNotEqual('1st',lab3.ordinal(1))
+		self.assertEqual('1st',lab3.ordinal(1))
 		
 	def test_teens(self): #run test to check ordinals of teens
 		self.assertEqual('13th',lab3.ordinal(13))

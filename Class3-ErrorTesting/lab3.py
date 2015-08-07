@@ -2,7 +2,7 @@ def ordinal(integer):
 	try:
 		if integer%1!=0: #raise type error if remainder is not zero (for float values)
 			raise TypeError
-		elif str(integer)[-2]=='1': #apply exception to ordinals with values that have 10s digit==1
+		elif str(integer)[-2:-1]=='1': #apply exception to ordinals with values that have 10s digit==1
 			raise Exception
 		elif (integer - 1)%10==0: #ordinal for values with 1 in ones digit
 			return "%dst" %integer
