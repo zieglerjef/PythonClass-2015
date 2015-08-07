@@ -16,8 +16,8 @@ class ordinalTest(unittest.TestCase):
 		self.assertEqual('2001st',lab3.ordinal(2001))
 		
 	def test_typeError(self): #check type errors
-		self.assertEqual("Enter an integer.",lab3.ordinal('b'))
-		self.assertEqual("Enter an integer.",lab3.ordinal('12.7'))
+		self.assertEqual("Enter an integer.",lab3.ordinal('b')) #test string
+		self.assertEqual("Enter an integer.",lab3.ordinal('12.7')) #test float
 		
 if __name__ == '__main__': #Add this if you want to run the test with this script.
   unittest.main()
