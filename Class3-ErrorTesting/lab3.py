@@ -1,6 +1,6 @@
 def ordinal(integer):
 	try:
-		if integer%1!=0: #raise type error if remainder is not zero
+		if integer%1!=0: #raise type error if remainder is not zero (for float values)
 			raise TypeError
 		elif str(integer)[-2]=='1': #apply exception to ordinals with values that have 10s digit==1
 			raise Exception
