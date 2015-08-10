@@ -1,4 +1,4 @@
-import random
+from random import uniform
 
 class Portfolio(): #initialize portfolio with zero balance
 	def __init__(self, cash=0.00):
@@ -44,7 +44,7 @@ class Portfolio(): #initialize portfolio with zero balance
 	
 	def sellAsset(self, share, asset): #sell different assets from portfolio with general function
 		self.portfolio[asset.typeName()][asset] -= share #since asset must be owned to sell, don't need if statement		
-		self.cash += asset.price * share #add value of sold assets to balance
+		self.cash += (asset.sellPrice() * share) #add value of sold assets to balance
 		self.history.append("%s: Sold %.2f shares of %s, $%.2f remaining." % (asset.typeName(), share, asset.name, self.cash))
 	
 	def sellMutualFund(self, share, asset): #create specific function to sell mutual funds using sellAsset function
