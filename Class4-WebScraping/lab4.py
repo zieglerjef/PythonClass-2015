@@ -26,9 +26,9 @@ def find_email(object): #create function to find @ symbol within faculty_attribu
 
 def getData(object,k): #create function to create faculty_attributes (Name, Title, Email, Webpage)
 	web_page = urllib2.urlopen(object)
-	soup = BeautifulSoup(web_page.read())
+	soup = BeautifulSoup(web_page.read()) #define soup
 	faculty_attributes = soup.find_all('div',{'class':'field-item even'})
-	return {"Name":re.sub(r'<[^>]+>', '', str(soup.find_all('h1',{'class':'pane-title'})[0])), "Title":re.sub(r'<[^>]+>', '', str(faculty_names[k].parent.parent.contents[-1])), "Email":find_email(faculty_attributes), "Webpage":object}
+	return {"Name":re.sub(r'<[^>]+>', '', str(soup.find_all("h1",{'class':'pane-title'})[0])), "Title":re.sub(r'<[^>]+>', '', str(faculty_names[k].parent.parent.contents[-1])), "Email":find_email(faculty_attributes), "Webpage":object}
 
 with open('faculty_attributes.csv', 'wb') as f: #loop to fill in each key within dict for each faculty member on faculty site
 	my_writer = csv.DictWriter(f, fieldnames=("Name", "Title", "Email", "Webpage"))
