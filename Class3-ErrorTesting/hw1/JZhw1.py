@@ -95,3 +95,17 @@ class Bond(assetType):
 		return "Bond"
 	def	sellPrice(self):
 		return uniform(0.7 * self.price, 1.3 * self.price)
+
+portfolio = Portfolio()
+portfolio.addCash(300.50)
+s = Stock(20, "HFH")
+portfolio.buyStock(5, s) #alternative: portfolio.buyAsset(5, s)
+mf1 = MutualFund("BRT")
+mf2 = MutualFund("GHT")
+portfolio.buyMutualFund(10.3, mf1)  #alternative: portfolio.buyAsset(10.3, mf1)
+portfolio.buyMutualFund(2, mf2)
+print(portfolio)
+portfolio.sellMutualFund(3, mf1) #alternative: portfolio.sellAsset(3, mf1)
+portfolio.sellStock(1, s)
+portfolio.withdrawCash(50)
+portfolio.history
