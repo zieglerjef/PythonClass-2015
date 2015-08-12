@@ -35,3 +35,5 @@ with open('petition_attributes.csv', 'wb') as f: #open csv file to write to
 	my_writer.writeheader() #create writeheader
 	for item in petition_name: #loop through each petition instance
 		my_writer.writerow(getData(item['href']))
+		
+f.close()
