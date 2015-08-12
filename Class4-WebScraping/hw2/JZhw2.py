@@ -23,11 +23,11 @@ def clean(object): #create function to clean html
 
 def getData(object): #create function to generate petition attributes from each petition page (Title, Published Date, Issues, # of signatures)
 	web_page = urllib2.urlopen(object) #update webpage to each individual instance's url
-	soup = BeautifulSoup(web_page.read()) #redefine soup for each petition instance
-	petition_title = soup.find_all('h1',{'class':'title'}) #grab petition title from h1 class
-	petition_date = soup.find_all('div',{'class':'date'}) #take published date from date div
-	petition_issues = soup.find_all('div',{'class':'issues'}) #take issues from issues div
-	petition_signatures = soup.find_all('div',{'class':'num-block num-block2'}) #take signatures from div
+	soup2 = BeautifulSoup(web_page.read()) #redefine soup for each petition instance
+	petition_title = soup2.find_all('h1',{'class':'title'}) #grab petition title from h1 class
+	petition_date = soup2.find_all('div',{'class':'date'}) #take published date from date div
+	petition_issues = soup2.find_all('div',{'class':'issues'}) #take issues from issues div
+	petition_signatures = soup2.find_all('div',{'class':'num-block num-block2'}) #take signatures from div
 	return {"Title":clean(petition_title), "Date":clean(petition_date), "Issues":clean(petition_issues), "Signatures":clean(petition_signatures)}
 
 with open('petition_attributes.csv', 'wb') as f: #open csv file to write to
