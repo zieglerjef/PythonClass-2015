@@ -30,5 +30,8 @@ print primes
 #Write a function that gives a solution to Tower of Hanoi game
 #https://www.mathsisfun.com/games/towerofhanoi.html
 
-
-
+def hanoi(disks, startPeg=1, endPeg=3):
+    if disks:
+        hanoi(disks-1, startPeg, 6-startPeg-endPeg)
+        print "Move disk %d from peg %d to peg %d" % (disks, startPeg, endPeg)
+        hanoi(disks-1, 6-startPeg-endPeg, endPeg)
