@@ -5,8 +5,8 @@ import re
 import wikipedia
 
 #access api twitter through application
-auth = tweepy.OAuthHandler('###', '###')
-auth.set_access_token('###', '###')
+auth = tweepy.OAuthHandler('d68FTuyH7HpNjgd3V3xRVsnEj', 'AtTmfOZAabROJJiwvIvO9wQmdosgYT8404QAzJWXohgUXZgblA')
+auth.set_access_token('1733128674-YpKzjMAoW5D9FsQFjoMhbpXoo2XNtVcj4En5w0S', 'WAHV5Qc0hFzIO0tXeWu2EqtzX0zsq26aHUBkamCau2UGg')
 api = tweepy.API(auth)
 
 #open csv file to read names of MEPs
