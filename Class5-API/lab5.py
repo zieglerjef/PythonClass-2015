@@ -33,16 +33,16 @@ def writeTweets(objects):
 			tweetDate = str(unicode(tweet.created_at).encode("utf-8")) #define the date that the tweet was made
 			tweetContent = str(unicode(tweet.text).encode("utf-8")) #define the contents of a single tweet
 			mepTweets.append({'Name': tweetUser, 'Date': tweetDate, 'Content': tweetContent}) #append the list with each tweet and subsequent info
-		except:  #general exception raised, timeout
+		except tweepy.TweepError:
 			time.sleep(1)
-			continue
+        	continue
 
 for person in mepScreenNames: #loop through each MEP screen name instance
 		try:
 			writeTweets(person)
-		except: #general exception raised, timeout
+		except tweepy.TweepError:
 			time.sleep(1)
-			continue
+        	continue
 
 with open('mepTweets.csv', 'wb') as f:  # Just use 'w' mode in 3.x
     w = csv.DictWriter(f, fieldnames=("Name", "Date", "Content"))
