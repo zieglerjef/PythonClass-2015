@@ -26,8 +26,9 @@ for item_name in mepNames: #generate loop to match search name with MEP name in 
 		time.sleep(1)
 
 mepTweets = [] #create object for each instance of a tweet by a single MEP
-def writeTweets(objects):
-	for tweet in next(tweepy.Cursor(api.user_timeline, objects, since='2009-07-14',until='2014-07-01').items()): #grab all items on a single user's timeline
+def writeTweets(item):
+	tweet_list=tweepy.Cursor(api.user_timeline, item, since='2009-07-14', until='2014-07-01').items()
+	for tweet in tweet_list: #grab all items on a single user's timeline
 		try:
 			tweetUser = str(tweet.user.screen_name) #define what the user's screen name is
 			tweetDate = str(unicode(tweet.created_at).encode("utf-8")) #define the date that the tweet was made
@@ -35,14 +36,17 @@ def writeTweets(objects):
 			mepTweets.append({'Name': tweetUser, 'Date': tweetDate, 'Content': tweetContent}) #append the list with each tweet and subsequent info
 		except tweepy.TweepError:
 			time.sleep(1)
-        	continue
-
+        	writeTweets(item)
+	
+def combineTweets(item):
+	try:
+		writeTweets(person)
+	except tweepy.TweepError:
+		time.sleep(1)
+       	combineTweets(person)
+       	
 for person in mepScreenNames: #loop through each MEP screen name instance
-		try:
-			writeTweets(person)
-		except tweepy.TweepError:
-			time.sleep(1)
-        	continue
+	combineTweets(person)
 
 with open('mepTweets.csv', 'wb') as f:  # Just use 'w' mode in 3.x
     w = csv.DictWriter(f, fieldnames=("Name", "Date", "Content"))
