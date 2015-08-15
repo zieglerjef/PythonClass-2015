@@ -5,8 +5,8 @@ import re
 import wikipedia
 
 #access api twitter through application
-auth = tweepy.OAuthHandler('d68FTuyH7HpNjgd3V3xRVsnEj', 'AtTmfOZAabROJJiwvIvO9wQmdosgYT8404QAzJWXohgUXZgblA')
-auth.set_access_token('1733128674-YpKzjMAoW5D9FsQFjoMhbpXoo2XNtVcj4En5w0S', 'WAHV5Qc0hFzIO0tXeWu2EqtzX0zsq26aHUBkamCau2UGg')
+auth = tweepy.OAuthHandler('###', '###')
+auth.set_access_token('###', '###')
 api = tweepy.API(auth)
 
 #open csv file to read names of MEPs
@@ -25,31 +25,34 @@ for item_name in mepNames: #generate loop to match search name with MEP name in 
 	except: #general exception raised, timeout
 		time.sleep(1)
 
-mepTweets = [] #create object for each instance of a tweet by a single MEP
-def writeTweets(item):
-	tweet_list=tweepy.Cursor(api.user_timeline, item, since='2009-07-14', until='2014-07-01').items()
-	for tweet in tweet_list: #grab all items on a single user's timeline
+mepTweets = [] #create object for each instance of a tweet by a single MEP       	
+
+# 	for person in mepScreenNames: #loop through each MEP screen name instance
+
+def writeTweets(person):
+	not_finished_again = True
+	while not_finished_again:
 		try:
-			tweetUser = str(tweet.user.screen_name) #define what the user's screen name is
-			tweetDate = str(unicode(tweet.created_at).encode("utf-8")) #define the date that the tweet was made
-			tweetContent = str(unicode(tweet.text).encode("utf-8")) #define the contents of a single tweet
-			mepTweets.append({'Name': tweetUser, 'Date': tweetDate, 'Content': tweetContent}) #append the list with each tweet and subsequent info
+			tweet_list=tweepy.Cursor(api.user_timeline, person).items()
+			for tweet in tweet_list:
+				not_finished = True
+				while not_finished:
+					try:
+						tweetUser = str(tweet.user.screen_name) #define what the user's screen name is
+						tweetDate = str(unicode(tweet.created_at).encode("utf-8")) #define the date that the tweet was made
+						tweetContent = str(unicode(tweet.text).encode("utf-8")) #define the contents of a single tweet
+						tweetLocation =str(tweet.coordinates) #define the coordinates
+						tweetLanguage =str(unicode(tweet.lang).encode("utf-8")) #define the coordinates
+						mepTweets.append({'Name': tweetUser, 'Date': tweetDate, 'Content': tweetContent, 'Location': tweetLocation, 'Language': tweetLanguage}) #append the list with each tweet and subsequent info
+						not_finished=False
+					except tweepy.TweepError:
+						time.sleep(1)
+			not_finished_again=False
 		except tweepy.TweepError:
 			time.sleep(1)
-        	writeTweets(item)
-	
-def combineTweets(item):
-	try:
-		writeTweets(person)
-	except tweepy.TweepError:
-		time.sleep(1)
-       	combineTweets(person)
-       	
-for person in mepScreenNames: #loop through each MEP screen name instance
-	combineTweets(person)
 
-with open('mepTweets.csv', 'wb') as f:  # Just use 'w' mode in 3.x
-    w = csv.DictWriter(f, fieldnames=("Name", "Date", "Content"))
+with open('mepTweets0.csv', 'wb') as f:  # Just use 'w' mode in 3.x
+    w = csv.DictWriter(f, fieldnames=("Name", "Date", "Content", "Location", "Language"))
     w.writeheader()
     for item in mepTweets:
     	w.writerow(item)
