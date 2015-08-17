@@ -7,6 +7,7 @@ def insertion_sort(item_list):
 			item_list[j+1] = item_list[j]
 			j = j - 1
 		item_list[j+1] = k
+	return insertion_sort
 		
 # selection sort
 def selection_sort(item_list):
@@ -18,3 +19,4 @@ def selection_sort(item_list):
 			temp = item_list[spot]
 			item_list[spot] = item_list[positionOfMax]
 			item_list[positionOfMax] = temp
+	return selection_sort
