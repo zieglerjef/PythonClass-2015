@@ -10,51 +10,15 @@ def makeLink(G, node1, node2):
   (G[node2])[node1] = 1
   return G 
 
-# Ring Network
-ring = {} # empty graph 
-
-n = 5 # number of nodes 
-
-# Add in edges
-for i in range(n):
-  ring = makeLink(ring, i, (i+1)%n)
-
-# How many nodes?
-print len(ring)
-
-# How many edges?
-print sum([len(ring[node]) for node in ring.keys()])/2 
-
-
-# Grid Network
-# TODO: create a square graph with 256 nodes and count the edges 
-def paths(graph, v):
-    """Generate the maximal cycle-free paths in graph starting at v.
-    graph must be a mapping from vertices to collections of
-    neighbouring vertices.
-
-    >>> g = {1: [2, 3], 2: [3, 4], 3: [1], 4: []}
-    >>> sorted(paths(g, 1))
-    [[1, 2, 3], [1, 2, 4], [1, 3]]
-    >>> sorted(paths(g, 3))
-    [[3, 1, 2, 4]]
-
-    """
-    path = [v]                  # path traversed so far
-    seen = {v}                  # set of vertices in path
-    def search():
-        dead_end = True
-        for neighbour in graph[path[-1]]:
-            if neighbour not in seen:
-                dead_end = False
-                seen.add(neighbour)
-                path.append(neighbour)
-                yield from search()
-                path.pop()
-                seen.remove(neighbour)
-        if dead_end:
-            yield list(path)
-    yield from search()
+# TODO: create a square graph with 256 nodes and count the edges
+def makeSquareGraph(n):
+	square = {}
+	for i in range(1,n):
+		if(i % sqrt(n) != 0):
+			square = makeLink(square, i, i+1)
+		if (i < (n - sqrt(n) + 1)):
+			square = makeLink(square, i, (i + int(sqrt(n))))
+	return square
 
 # TODO: define a function countEdges
 def countNodes(item):
@@ -154,9 +118,8 @@ def findShortestPath(graph, start, end, path=[]):
 print findShortestPath(movies, ms, ss)
 
 # TODO: implement findAllPaths() to find all paths between two nodes
-# allPaths = findAllPaths(movies, jr, ms)
-# for path in allPaths:
-#   print path
+
+
 
 # Copyright (c) 2014 Matt Dickenson
 # 
