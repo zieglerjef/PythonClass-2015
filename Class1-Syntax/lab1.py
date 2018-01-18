@@ -1,7 +1,7 @@
 def binarify(num): 
  """convert positive integer to base 2"""
-  if num<=0: return '0'
-  elif num>0: return format(num, 'b')
+	if num<=0: return '0'
+	elif num>0: return format(num, 'b')
 
 def int_to_base(num, base):
 """convert positive integer to a string in any base"""
@@ -15,21 +15,21 @@ def int_to_base(num, base):
 
 def base_to_int(string, base):
   """take a string-formatted number and its base and return the base-10 integer"""
-  if string=="0" or base <= 0 : return 0 
-  string = string[::-1]
-  x = [digit for digit in string]
-  integ = []
-  for i in range (0,len(string)):
-  	integ.append(int(x[i])*base**i)
-  return sum(integ) 
+	if string=="0" or base <= 0 : return 0 
+	string = string[::-1]
+	x = [digit for digit in string]
+	integ = []
+	for i in range (0,len(string)):
+  		integ.append(int(x[i])*base**i)
+	return sum(integ) 
 
 def flexibase_add(str1, str2, base1, base2):
   """add two numbers of different bases and return the sum"""
-  return base_to_int(str1, base1) + base_to_int(str2, base2)
+	return base_to_int(str1, base1) + base_to_int(str2, base2)
 
 def flexibase_multiply(str1, str2, base1, base2):
   """multiply two numbers of different bases and return the product"""
-  return base_to_int(str1, base1) * base_to_int(str2, base2)
+	return base_to_int(str1, base1) * base_to_int(str2, base2)
 
 def romanify(num):
   """given an integer, return the Roman numeral version"""

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  26 AUG 2015 10:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  28 MAR 2017 12:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -487,6 +487,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--40
 
  []
 
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 35--41
+[][] 
+ []
+
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <35.83> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 52.
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 67.
@@ -568,7 +573,7 @@ msfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times
 b></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/l
 ocal/texlive/2014/texmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/local/
 texlive/2014/texmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
-Output written on projectPoster.pdf (1 page, 151330 bytes).
+Output written on projectPoster.pdf (1 page, 151328 bytes).
 PDF statistics:
  48 PDF objects out of 1000 (max. 8388607)
  33 compressed objects within 1 object stream
